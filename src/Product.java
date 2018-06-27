@@ -1,21 +1,27 @@
+import java.util.ArrayList;
+
 public abstract class Product {
     private String name;
     private int price;
-    private int availableCount;
     private String quantityType;
+    private int number;
     public abstract int calculatePrice(ShoppingCart item);
 
     public Product(){
-        this("", 0, 0, "");
+        this("", 0, "", 0);
     }
-    Product(String name, int price, int availableCount, String quantityType) {
+    static ArrayList<Product> productsList = new ArrayList<Product>();
+    Product(String name, int price, String quantityType, int number) {
         this.name = name;
         this.price = price;
-        this.availableCount = availableCount;
         this.quantityType = quantityType;
+        this.number = number;
     }
     int getPrice() {
         return price;
+    }
+    int getNumber() {
+        return number;
     }
 
     public String getQuantityType() {
@@ -24,11 +30,5 @@ public abstract class Product {
     public String getName() {
         return name;
     }
-    int getAvailableCount() {
-        return availableCount;
-    }
 
-    public void setAvailableCount(int availableCount) {
-        this.availableCount = availableCount;
-    }
 }
