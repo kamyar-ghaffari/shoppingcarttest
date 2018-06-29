@@ -25,6 +25,15 @@ public class ShoppingCart {
 
     private static ArrayList<ShoppingCart> cart = new ArrayList<ShoppingCart>();
     private static Scanner input = new Scanner(System.in);
+    private static int totalPrice;
+    private static int getTotal() {
+        totalPrice = 0;
+
+        for (ShoppingCart s: cart) {
+            totalPrice = totalPrice + Product.calculatePrice(s);
+        }
+        return totalPrice;
+    }
 
 
     public ShoppingCart(String name, int count, int price, String quantityType) {
@@ -40,8 +49,11 @@ public class ShoppingCart {
         System.out.println();
 
         for (ShoppingCart s: cart) {
-            System.out.println(s.getCount() + " " + s.getQuantityType() + "s  of " + s.getName());
+
+            System.out.println(s.getCount() + " " + s.getQuantityType() + "s  of " + s.getName() + "         price: " + Product.calculatePrice(s));
         }
+        System.out.println("TOTAL PRICE: " + getTotal());
+        System.out.println();
         System.out.println();
         System.out.println("if you want to remove a product from your cart enter the name of product,");
         System.out.println("if you want to add more items enter ' add ' ,");
@@ -53,18 +65,26 @@ public class ShoppingCart {
             System.out.println("OK, this is the end of shopping actually and the rest should be payment which i don't have, so goodbye!!");
             System.exit(0);
         } else {
-            for (ShoppingCart s: cart) {
-                String proName = s.getName();
-                if (answer.equals(proName)) {
-                    removeFromCart(s);
-                }
+            remove(answer);
+        }
+    }
+    public static void addToCart(ShoppingCart p){
+        cart.add(p);
+        getTotal();
+    }
+    public static void remove(String name) {
+        for (ShoppingCart s: cart) {
+            String  proName = s.getName();
+            if (name.equals(proName)) {
+                removeFromCart(s);
+            } else {
+                // don't know
             }
         }
     }
-    public static String addToCart(ShoppingCart p){
-        return (cart.add(p)) ? "Successfully added " + p.getName() : "Error adding " + p.getName();
-    }
-    public static String removeFromCart(ShoppingCart p){
-        return (cart.remove(p)) ? "Successfully removed " + p.getName() : "Error removing " + p.getName();
+    public static void removeFromCart(ShoppingCart p){
+        cart.remove(p);
+        getTotal();
+        printCart();
     }
 }

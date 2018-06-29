@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 
-public abstract class Product {
+public class Product {
     private String name;
     private int price;
     private String quantityType;
     private int number;
-    public abstract int calculatePrice(ShoppingCart item);
+    public static int calculatePrice(ShoppingCart item) {
+        return item.getPrice() * item.getCount();
+    }
 
     public Product(){
         this("", 0, "", 0);
@@ -16,6 +18,7 @@ public abstract class Product {
         this.price = price;
         this.quantityType = quantityType;
         this.number = number;
+
     }
     int getPrice() {
         return price;

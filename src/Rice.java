@@ -1,7 +1,4 @@
 public class Rice extends Product {
-    Rice() {super("Rice", 5, "Kg");}
+    Rice() {super("Rice", 5, "Kg", 1);}
 
-    public int calculatePrice(ShoppingCart item) {
-        return item.getPrice() * item.getCount();
-    }
 }

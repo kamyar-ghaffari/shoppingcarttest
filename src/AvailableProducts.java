@@ -1,16 +1,20 @@
 import java.util.Scanner;
 
 public class AvailableProducts {
+
     public static void printList() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Here's the list of available products: ");
+        System.out.println(" __________________________________________");
+        System.out.println("|  Here's the list of available products   |");
+        System.out.println("|__________________________________________|");
         System.out.println();
+        System.out.println("Number    Name    Price    QuantityType");
         for (Product p: Product.productsList) {
             int pNumber = p.getNumber();
             String pName = p.getName();
             String pQuantityType = p.getQuantityType();
             int pPrice = p.getPrice();
-            System.out.println(pName + "   " + pPrice + "   " + pQuantityType);
+            System.out.println(pNumber + "         " + pName + "      " + pPrice + "      " + pQuantityType);
         }
         System.out.println("Please enter the number of the product you're willing to add to cart, ");
         System.out.println("or simply enter 0 to open shopping cart.");
